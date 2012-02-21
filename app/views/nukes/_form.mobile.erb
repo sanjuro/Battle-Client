@@ -1,0 +1,19 @@
+<div data-role="content" data-theme="d"> 
+	<%= form_tag("/nukes", :method => "post") do %>
+	  <%= hidden_field_tag(:game_id, @game.id) %>
+	  
+	  <p>
+  		<%= label_tag(:y_value, "Y:") %>
+ 		<%= text_field_tag(:y_value) %>
+	  </p>
+	  
+	  <p>
+	  	<%= label_tag(:x_value, "X:") %>
+	  	<%= text_field_tag(:x_value) %>
+	  </p>
+	
+	  <p><%= submit_tag("Send the Bomb-ba") %></p>
+	<% end %>
+	
+	<br>
+</div>

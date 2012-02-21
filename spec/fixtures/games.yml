@@ -1,0 +1,7 @@
+game:
+ id:              1
+ user_id:         1
+ server_game_id:  1000
+ status:         'in_progress'
+ server_hits:     0
+ player_hits:     0

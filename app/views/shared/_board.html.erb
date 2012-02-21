@@ -1,0 +1,24 @@
+<table class="board">
+	<tr>
+	<% for x in 0..9 %>
+		<td><%= x %></td>
+	<% end %>
+	</tr>
+
+	<% for y in 0..9 %>
+		<tr>
+			<td><%= y %></td>
+			<% for x in 0..9 %>	
+					<% if @client_blocks[[y,x]] == 'in_play' %>
+						<td>i</td>
+					<% elsif @client_blocks[[y,x]] == 'miss' %>
+						<td class="miss">m</td>
+					<% elsif @client_blocks[[y,x]] == 'hit' %>
+						<td class="hit">hit</td>
+					<% else %>
+						<td></td>
+					<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

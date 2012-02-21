@@ -1,0 +1,27 @@
+<h1>Your Games</h1>
+<p>
+<% if @games_in_progress.empty? %>
+	<h3>
+	<span class="blank_slate">
+		You do not have any Games yet. <%= link_to 'Create One', new_game_path %>
+	</span>
+	</h3>
+<% else %>
+	 <ul id="games_list">
+	 <li></li>
+	 <% @games.each do |game| %>
+	 	<li class="game_item">
+	 		<h3><%= link_to game.server_game_id , game %></h3>
+	 		<p>
+	 			<%= game.created_at.strftime('%Y-%m-%d %H:%m') %>
+	 			<br>
+	 			Status: <%= game.status %>
+	 		</p>
+	 		
+	 	</li>
+	 <% end %>
+	<ul>
+ <% end %>
+</p>
+
+<%= link_to 'New Game', new_game_path %>

@@ -1,0 +1,13 @@
+<div data-role="header" data-theme="d">
+	<a href="" data-rel="back" data-icon="back">Back</a>
+	<h1>You sank my battle ships</h1>
+	<%= link_to 'Home', root_path, "class" => "ui-btn-right", "data-icon" => "home" %>
+</div>
+
+<div data-role="content">
+	<h3>Good work man you won!</h3>
+	<p>
+		Would you like to play again?
+		<%= link_to 'Yes', new_game_path %>
+	</p>
+</div>

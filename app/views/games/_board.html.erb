@@ -1,0 +1,24 @@
+<table class="board">
+	<tr>
+	<% for y in 0..9 %>
+		<td><%= y %></td>
+	<% end %>
+	</tr>
+
+	<% for y in 0..9 %>
+		<tr>
+			<td><%= x %></td>
+			<% for y in 0..9 %>	
+					<% if @blocks[[y,x]] == Block::STATUS_MISS %>
+						<td class="miss"></td>
+					<% elsif @blocks[[y,x]] == Block::STATUS_HIT %>
+						<td class="hit"></td>
+					<% elsif @blocks[[y,x]] == Block::STATUS_SHIP %>
+						<td class="ship"></td>
+					<% else %>
+						<td class="water"></td>
+					<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

@@ -1,0 +1,32 @@
+<div data-role="header" data-theme="d">
+	<a href="" data-rel="back" data-icon="back">Back</a>
+	<h1>Games</h1>
+	<%= link_to 'Home', root_path, "class" => "ui-btn-right", "data-icon" => "home" %>
+</div>
+ 
+<div data-role="content" data-theme="d"> 
+	<% if @games.empty? %>
+		<h3>
+		<span class="blank_slate">
+			You do not have any Games yet. <%= link_to 'Create One', new_game_path %>
+		</span>
+		</h3>
+	<% else %>
+	 <ul data-role="listview" data-filter="true">
+	 <% @games_in_progress.each do |game| %>
+	 	<li>
+	 		<h3><%= link_to game.server_game_id , game %></h3>
+	 		<p>
+	 			<%= game.created_at.strftime('%Y-%m-%d %H:%m') %>
+	 			<br>
+	 			Status: <%= game.status %>
+	 		</p>
+	 		
+	 	</li>
+	 <% end %>
+	<ul>
+	 <% end %>
+	 
+	<br />
+	
+</div>

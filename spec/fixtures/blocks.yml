@@ -1,0 +1,7 @@
+block1:
+ id:               1
+ game_id:          1
+ x:                0
+ y:                0
+ status            'in_play'
+ is_server_block:  false

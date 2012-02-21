@@ -1,0 +1,394 @@
+body {
+    background: #E9EAEA;
+    color: #494949;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 0px;
+    margin: 0px;
+}
+h1 {
+    border-bottom: 2px solid #EEEEEE;
+    color: #007FD8;
+	font-size: 26px;
+    margin-bottom: 24px;
+    padding-bottom: 19px;	
+}
+header
+{
+	background: url("../images/mainboxwrapper.png") repeat-x scroll 0 0 #006FD3;
+    border-bottom: 1px solid #007FD8;
+    height: 60px;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+header img {
+  float: left;
+  height: 50px;
+  padding: 5px 10px;
+}
+
+
+
+.container {
+	margin: 0 auto;
+ 	width: 1000px;
+}
+
+section {
+   	background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    margin: 30px auto;
+    overflow: auto;
+    padding: 10px 20px;
+    position: relative;
+    width: 980px;
+}
+
+section h1 {
+ 
+}
+
+section.column {
+	font-size: 14px/18px;
+}
+
+.inner {
+	font-size: 80%;
+	padding: 20px 10px;
+    width: 400px;	
+}
+
+em{
+    color: #00A0D1;
+    font-style: normal;
+}
+
+#logo {
+    color: #FFFFFF;
+    float: left;
+    font: 900 45px sommet-slab,kulturista-web,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    letter-spacing: -1px;
+    margin: 0px 0 30px -4px;
+    text-decoration: none;
+    text-shadow: 0 2px 2px #39677F;	
+}
+
+.box {
+    background-color: #EEEEEE;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 0 1px #DDDDDD;
+    padding: 5px 20px;
+    margin-bottom: 24px;
+    width: 95%;	
+	}
+
+/* Links */
+a {
+  color: #069;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#logo a {
+	color: #FFF;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+#logo a:hover {
+  text-decoration: none;
+  text-shadow: 0 4px 4px #000;	
+  -moz-transition: opacity 0.25s linear 0s;
+}
+
+/* Navigation */
+nav {
+	background: url("../images/nav.jpg") no-repeat center #005b98;
+	border-top: 1px solid #00a3d9;
+  	color: white;
+  	height: 30px;
+  	line-height: 30px;
+  	letter-spacing: -1px;
+  	text-decoration: none;
+  	text-shadow: 0 2px 2px #39677F;	
+  	white-space: nowrap;
+}
+
+#navigation {
+	float: right;
+	}
+	
+footer nav {
+	background: none;
+	border: none;
+	}
+	
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  color: #FFF;
+  padding: 5px 5px;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+
+footer nav ul li a {
+	color: #069;
+}
+
+footer a:visited {
+	color: #069;
+}
+
+/* Sign Up Form */
+label {
+    font-weight: bold;
+    line-height: 1.75em;
+    margin: 0;
+    padding-top: 1em;
+    vertical-align: middle;	
+}
+
+input {
+	border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px #EEEEEE;
+    font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+    margin: 0;
+    padding: 6px;
+    width: auto;
+}
+
+
+input:focus {
+    border-color: rgba(82, 168, 236, 0.75);
+    box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+}
+
+
+input.continue {
+    background-color: #F79923;
+    background-image: -moz-linear-gradient(center top , #F79923, #F27016);
+    border: 1px solid #925B33;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 0 #F9BC69 inset;
+    color: #FFFFFF;
+    font: 700 18px sommet-slab,kulturista-web,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #925B33;	
+}
+
+a.continue, a.checkout, button.large, input#user_submit {
+    background-color: #F79923;
+    background-image: -moz-linear-gradient(center top , #F79923, #F27016);
+    border: 1px solid #925B33;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 0 #F9BC69 inset;
+    color: #FFFFFF;
+    font: 700 18px sommet-slab,kulturista-web,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #925B33;
+}
+
+input.continue:hover,  a.continue:hover,  a.checkout:hover, button.large:hover, input#user_submit:hover {
+	background-color: #F8A53B;
+    background-image: -moz-linear-gradient(center top , #F8A53B, #F47F2E);
+    border: 1px solid #A56739;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 0 #FAC781 inset;
+    text-shadow: 0 -1px 0 #A56739;
+}
+
+/* Sign up button */
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Round corners */
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+/* User show page */
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+.links {
+	float:right;	
+}
+
+/* Flash Messages */
+h1 span.success, h1 span.error {
+	padding: 0.1em 0.4em;
+	}
+	
+td span.error {
+	padding: 0.2em;
+	}
+	
+td span.success {
+	padding: 0.2em;
+	}	
+
+/* Specific */
+ul#games_list {
+	list-style: none;
+}
+.board td {
+	height: 5px;
+	text-align: center;
+	width: 23px;
+	}
+.hit {
+	background-color: green;
+	}
+.miss {
+	background-color: red;
+	}
+.comment{
+    clear: both;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    max-width: 700px;	
+    padding-bottom: 10px;
+}	
+
+.comment_metadata {
+    color: #767E84;
+    float: left;
+    font-size: 0.9em;
+    width: 130px;              
+}
+
+.comment_author{
+	font-weight: bold;
+}
+
+.comment_body{
+	margin-left: 150px;
+}
+
+#player_board, #server_board {
+	width: 48%;
+	}
+.hit {
+	background-color: green;	
+	}
+.miss {
+	background-color: red;
+	}
+.water {
+	background-color: #007FD8;
+	}
+.ship {
+	background-color: black;
+	}
+	
+/* Buttons */
+.print_pdf_button {
+	color: #FFF !important;
+	padding: 0.2em !important;
+    }	
+
+.print_pdf_button a {
+	color: #FFF !important;
+}
+
+/* All Purpose */
+.error, .alert, .notice, .success, .info, #error_explanation, .print_pdf_button  {border-radius: 4px 4px 4px 4px;border-style: solid;border-width: 1px;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;color:#FFF;padding:0.8em;margin-bottom:1em;}
+.error, .alert, #error_explanation {background-color: #C43C35;
+    background-image: -moz-linear-gradient(center top , #EE5F5B, #C43C35);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);}
+.notice, .infom, .print_pdf_button {    background-color: #339BB9;
+    background-image: -moz-linear-gradient(center top , #5BC0DE, #339BB9);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);}
+.success {background-color: #57A957;
+    background-image: -moz-linear-gradient(center top , #62C462, #57A957);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);}
+.error a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
+.clearer {clear:both;}
+.column{float: left;'}
+.blank_slate {
+    border: 1px dashed #DADADA;
+    border-radius: 3px 3px 3px 3px;
+    color: #AAAAAA;
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 14px 25px;
+    text-align: center;
+}

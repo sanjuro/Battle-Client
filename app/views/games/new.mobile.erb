@@ -1,0 +1,89 @@
+<div data-role="header" data-theme="d">
+	<a href="" data-rel="back" data-icon="back">Back</a>
+	<h1>Game Id: <%= @game.server_game_id %></h1>
+	<%= link_to 'Home', root_path, "class" => "ui-btn-right", "data-icon" => "home" %>
+</div>
+
+<div data-role="content">
+
+	<div data-role="collapsible" data-collapsed="true">
+		<h3>Instructions</h3>
+		<p>
+			Your battelfield will be automatically generated.<br>
+			It is a 10 X 10 field, starting with 0 up to 9.
+			<br>
+			<h4>Your ships:</h4>
+			<ul>
+			<li>1 x Carrier (5 blocks long)</li>
+			<li>1 x Battleship (4 blocks long)</li>
+			<li>1 x Destroyer (3 blocks long)</li>
+			<li>2 x Submarines (2 blocks long)</li>
+			<li>2 x Patrol Boats (1 blocks long)</li>
+			</ul>
+		</p>
+	</div>
+	
+	<div id="player_board">
+	<h3>Your Board</h3>
+	<table class="board">
+		<tr>
+			<td>&nbsp;</td>
+		<% for y in 0..9 %>
+			<td><%= y %></td>
+		<% end %>
+		</tr>
+	
+		<% for x in 0..9 %>
+			<tr>
+				<td><%= x %></td>
+				<% for y in 0..9 %>	
+						<% if @player_blocks[[y,x]] == Block::STATUS_MISS %>
+							<td class="miss"></td>
+						<% elsif @player_blocks[[y,x]] == Block::STATUS_HIT %>
+							<td class="hit"></td>
+						<% elsif @player_blocks[[y,x]] == Block::STATUS_SHIP %>
+							<td class="ship"></td>
+						<% else %>
+							<td class="water"></td>
+						<% end %>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+	</div>
+	
+	<div id="server_board">
+	<h3>Opponents Board</h3>
+	<table class="board">
+		<tr>
+			<td>&nbsp;</td>
+		<% for y in 0..9 %>
+			<td><%= y %></td>
+		<% end %>
+		</tr>
+	
+		<% for x in 0..9 %>
+			<tr>
+				<td><%= x %></td>
+				<% for y in 0..9 %>	
+						<% if @server_blocks[[y,x]] == Block::STATUS_MISS %>
+							<td class="miss"></td>
+						<% elsif @server_blocks[[y,x]] == Block::STATUS_HIT %>
+							<td class="hit"></td>
+						<% else %>
+							<td class="water"></td>
+						<% end %>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+	</div>
+	
+	<div class="clearer" style="height:20px;"></div>
+	
+	<h3>Send a Bomb-Ba</h3>
+	<p>
+		<%= render 'nukes/form', :locals => {:game => @game} %>
+	</p>
+	
+</div>

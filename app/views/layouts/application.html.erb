@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Battleships</title>
+  <%= csrf_meta_tag %>
+  <%= render 'shared/stylesheets' %>
+  <%= javascript_include_tag "jquery-1.7.1.min.js" %>
+  <%= javascript_include_tag "jquery_ujs" %>
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  </head>
+  <body>
+  	<header>
+		<div class="container">
+			<div id="logo">
+				<%= link_to('Battleships', root_path )  %>
+			</div>
+		</div>
+	</header>
+	<nav>
+	   <div class="container">
+       		<%= render "shared/navigation" %>
+       </div>
+	</nav>
+    <div class="container">
+      <section class="round">
+         <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+        <%= yield %>
+      </section>
+      <%= render 'shared/footer' %>
+    </div>
+  </body>
+</html>

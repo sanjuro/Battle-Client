@@ -1,0 +1,25 @@
+<div data-role="header" data-theme="d">
+  <h1>Sign in</h1>
+  <%= link_to 'Home', root_path, "class" => "ui-btn-right", "data-icon" => "home" %>
+</div>
+
+<div data-role="content" data-theme="d"> 
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	
+	  <p><%= f.label :email, 'Email' %><br />
+	  <%= f.text_field :email %></p>
+	
+	  <p><%= f.label :password %><br />
+	  <%= f.password_field :password %></p> 
+	
+	  <% if devise_mapping.rememberable? -%>
+	    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+	  <% end -%>
+	
+	  <p><%= f.submit "Sign in" %></p>
+	<% end %>
+	
+	<br>
+	
+	<%= render :partial => "devise/shared/links" %>
+</div>
