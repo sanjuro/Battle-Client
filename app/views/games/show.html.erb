@@ -1,4 +1,7 @@
-<h1>Game Id: <%= @game.server_game_id %></h1>
+<h1>
+	Game Id: <%= @game.server_game_id %>
+	<span class=""><%=  @game.status %></span>
+</h1>
 <p>
 Your battelfield will be automatically generated.<br>
 It is a 10 X 10 field, starting with 0 up to 9.
@@ -33,7 +36,7 @@ It is a 10 X 10 field, starting with 0 up to 9.
 					<% elsif @player_blocks[[y,x]] == Block::STATUS_SHIP %>
 						<td class="ship"></td>
 					<% else %>
-						<td class="water"></td>
+						<td id="<%= @game.id %>_<%= y %>_<%= x %>" class="block water"></td>
 					<% end %>
 			<% end %>
 		</tr>
@@ -60,7 +63,7 @@ It is a 10 X 10 field, starting with 0 up to 9.
 					<% elsif @server_blocks[[y,x]] == Block::STATUS_HIT %>
 						<td class="hit"></td>
 					<% else %>
-						<td class="water"></td>
+						<td id="<%= @game.id %>_<%= y %>_<%= x %>" class="block water"></td>
 					<% end %>
 			<% end %>
 		</tr>
@@ -70,7 +73,25 @@ It is a 10 X 10 field, starting with 0 up to 9.
 
 <div class="clearer" style="height:20px;"></div>
 
+<% if @game.status != 'won' %>
+
+<div style="display:none;">
 <h3>Send a Bomb-Ba</h3>
 <p>
 	<%= render 'nukes/form', :locals => {:game => @game} %>
 </p>
+</div>
+<% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.block').click(function() {
+		var str = this.id
+		id = str.split('_')
+
+		$('#y_value').val(id[2]);
+		$('#x_value').val(id[1]);
+
+		document.forms["nuke_form"].submit();
+	});
+});
+</script>

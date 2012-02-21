@@ -4,7 +4,7 @@ module Player
   def create_game(game)   
     # Create game on battle service
       
-    uri = URI.parse('http://127.0.0.1:9000/games?name=' + self.name + '&email=' + self.email)
+    uri = URI.parse('http://10.32.1.241:9000/games?name=' + self.name + '&email=' + self.email)
     
     request = Net::HTTP::Post.new uri.request_uri
     
@@ -56,7 +56,7 @@ module Player
   def show_game(game)   
     # Show game on battle service
           
-    uri = URI.parse('http://127.0.0.1:9000/game?id=' + game.server_game_id)
+    uri = URI.parse('http://10.32.1.241:9000/game?id=' + game.server_game_id)
     
     request = Net::HTTP::Get.new uri.request_uri
     
@@ -94,7 +94,7 @@ module Player
   def make_move(game, x_value, y_value)         
     # Create move on battle service      
     
-    uri = URI.parse('http://127.0.0.1:9000/nukes')
+    uri = URI.parse('http://10.32.1.241:9000/nukes')
 
     response = Net::HTTP.post_form(uri, 
                                    {

@@ -1,4 +1,4 @@
-<%= form_tag("/nukes", :method => "post") do %>
+<%= form_tag("/nukes", :method => "post", :id => "nuke_form") do %>
 <fieldset>
   <%= hidden_field_tag(:game_id, @game.id) %>
 

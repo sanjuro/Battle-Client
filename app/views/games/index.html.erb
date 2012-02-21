@@ -1,6 +1,6 @@
 <h1>Your Games</h1>
 <p>
-<% if @games_in_progress.empty? %>
+<% if @games.empty? %>
 	<h3>
 	<span class="blank_slate">
 		You do not have any Games yet. <%= link_to 'Create One', new_game_path %>
