@@ -39,7 +39,10 @@ class GamesController < ApplicationController
   
   def show
     @game = Game.find_by_id!(params[:id])
-    result = ShowGameContext.call(current_user.id, @game.id)
+      
+   result = ShowGameContext.call(current_user.id, @game.id)
+
+    @sunk_ships = result["sunk"]
     
     @player_blocks = @game.get_player_blocks
     @server_blocks = @game.get_server_blocks

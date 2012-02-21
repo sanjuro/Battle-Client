@@ -56,7 +56,7 @@ module Player
   def show_game(game)   
     # Show game on battle service
           
-    uri = URI.parse('http://10.32.1.241:9000/game?id=' + game.server_game_id)
+    uri = URI.parse('http://10.32.1.241:9000/game?id=' + game.server_game_id.to_s())
     
     request = Net::HTTP::Get.new uri.request_uri
     
@@ -77,18 +77,18 @@ module Player
 #               }
       
     response = ActiveSupport::JSON.decode(response.body) 
-               
+  
     # Update Status of game
-    game.update_attributes(:status => response["game"]["status"])
-           
+    game.update_attributes(:status => response["game"]["game"]["status"])
+ 
     # Update all blocks to keep client in sync  
-    response[:blocks].each do |block,data|
-      block = Block.by_game_id(game.id).where(:x => data[:x], :y => data[:y], :is_server_block => data[:is_server_block]).first
-      block.update_attributes(:status => data[:status])
+    response["blocks"].each do |block|
+      block_for_update = Block.by_game_id(game.id).where(:x => block["block"]["y"], :y => block["block"]["x"], :is_server_block => block["block"]["is_server_block"]).first
+      block_for_update.update_attributes(:status => block["block"]["status"])
     end
               
     # p response
-    return game
+    return response
   end
   
   def make_move(game, x_value, y_value)         
@@ -102,13 +102,17 @@ module Player
                                      'x_value' => x_value.to_s(),
                                      'y_value' => y_value.to_s()
                                    })
-   
+    p response
     # Simulated Response from Battle Service
     # response = { :id => game.server_game_id, :player_status => 'hit', :y => 5, :x => 5, :server_status => 'miss', :game_status => 'in_progress'}
     response = ActiveSupport::JSON.decode(response.body) 
 
     # Update Game Status
     game.update_attributes(:status => response["game_status"])
+      
+    if !response["error"].nil?
+      return response
+    end
     
     if response["prize"].nil?
       # Update player's blocks

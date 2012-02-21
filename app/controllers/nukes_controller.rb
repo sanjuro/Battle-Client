@@ -15,6 +15,8 @@ class NukesController < ApplicationController
     y_value = params[:y_value]
 
     result = MakeMoveContext.call(current_user.id,game_id,x_value,y_value) 
+    
+    @sunk_ships = result["sunk"]
   
     @game = Game.find_by_id!(game_id)
     
@@ -29,10 +31,6 @@ class NukesController < ApplicationController
         if result["player_status"] == 'hit'
           flash[:notice] = 'You hit something.'
         end 
-          
-        if !result["sunk"].nil?
-          flash[:notice] = 'You sunk my ' + result["sunk"]
-        end 
         
         if !result["error"].nil?
           flash[:notice] = result["error"]
@@ -42,7 +40,7 @@ class NukesController < ApplicationController
           flash[:prize] = result["prize"]
         end 
            
-        format.html  { redirect_to(game_path(@game)) }
+        format.html # create.html.erb
         format.json  { render :json => @game,
                         :status => :created, :location => @game }
       else
