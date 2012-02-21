@@ -17,7 +17,7 @@ class GamesController < ApplicationController
   def new
     @game = Game.create(:user_id => current_user.id)
 
-    CreateGameContext.call(current_user.id, @game.id)
+    result = CreateGameContext.call(current_user.id, @game.id)
     
     @player_blocks = @game.get_player_blocks
     @server_blocks = @game.get_server_blocks
@@ -39,7 +39,7 @@ class GamesController < ApplicationController
   
   def show
     @game = Game.find_by_id!(params[:id])
-    # response = ShowGameContext.call(current_user.id, @game)
+    result = ShowGameContext.call(current_user.id, @game.id)
     
     @player_blocks = @game.get_player_blocks
     @server_blocks = @game.get_server_blocks
