@@ -4,37 +4,13 @@ module Player
   def create_game(game)   
     # Create game on battle service
       
-    uri = URI.parse('http://10.32.1.241:9000/games?name=' + self.name + '&email=' + self.email)
+    uri = URI.parse('http://0.0.0.0:9000/games?name=' + self.name + '&email=' + self.email)
     
     request = Net::HTTP::Post.new uri.request_uri
     
     response = Net::HTTP.start(uri.host, uri.port) { |http|
         http.request(request)
       }
-         
-    # Simulated Response from Battle Service
-#    response = { :game => {:id => 1000, :status => 'in_progress'}, 
-#                 :player_ships => { 
-#                              :a => {:ship_id => 1, :y => 0, :x => 1}, 
-#                              :b => {:ship_id => 1, :y => 0, :x => 2}, 
-#                              :c => {:ship_id => 1, :y => 0, :x => 3}, 
-#                              :d => {:ship_id => 1, :y => 0, :x => 4},
-#                              :p => {:ship_id => 1, :y => 0, :x => 5},
-#                              :e => {:ship_id => 2, :y => 8, :x => 0},
-#                              :f => {:ship_id => 2, :y => 8, :x => 1},
-#                              :g => {:ship_id => 2, :y => 8, :x => 2},
-#                              :f => {:ship_id => 2, :y => 8, :x => 3},
-#                              :g => {:ship_id => 3, :y => 1, :x => 8},
-#                              :h => {:ship_id => 3, :y => 2, :x => 8}, 
-#                              :i => {:ship_id => 3, :y => 3, :x => 8}, 
-#                              :j => {:ship_id => 4, :y => 8, :x => 7}, 
-#                              :k => {:ship_id => 4, :y => 9, :x => 7},
-#                              :l => {:ship_id => 5, :y => 5, :x => 9},
-#                              :m => {:ship_id => 5, :y => 6, :x => 9},
-#                              :n => {:ship_id => 6, :y => 0, :x => 0},
-#                              :o => {:ship_id => 7, :y => 9, :x => 9}
-#                            }
-#               }
     
     response =  ActiveSupport::JSON.decode(response.body)      
 
@@ -42,12 +18,12 @@ module Player
     game.update_attributes(:server_game_id => response["game"]["id"])
 
     # Allocate ships as dictated by the web service
-    response["blocks"].each do |game_block|
-  
-      block = Block.by_game_id(game.id).where(:y => game_block["block"]["y"]).where(:x => game_block["block"]["x"]).first
-      block.update_attributes(:status => game_block["block"]["status"], 
-                              :game_ship_id => game_block["block"]["game_ship_id"]
-                             )
+    response["cells"].each do |game_block|
+      block = Block.by_game_id(game.id).where(:y => game_block["cell"]["y"]).where(:x => game_block["cell"]["x"]).first 
+      block.update_attributes(
+          :status => game_block["cell"]["status"], 
+          :game_ship_id => game_block["cell"]["game_ship_id"]
+       )
     end
 
     return game
@@ -56,35 +32,23 @@ module Player
   def show_game(game)   
     # Show game on battle service
           
-    uri = URI.parse('http://10.32.1.241:9000/game?id=' + game.server_game_id.to_s())
+    uri = URI.parse('http://0.0.0.0:9000/game?id=' + game.server_game_id.to_s())
     
     request = Net::HTTP::Get.new uri.request_uri
     
     response = Net::HTTP.start(uri.host, uri.port) { |http|
         http.request(request)
       }
-
-    # Simulated Response from Battle Service
-#    response = { :game => {:id => 1000, :status => 'in_progress'}, 
-#                 :blocks => { 
-#                              :a => {:y => 0, :x => 0, :status => 'hit', :is_server_block => false}, 
-#                              :b => {:y => 0, :x => 1, :status => 'hit', :is_server_block => false}, 
-#                              :c => {:y => 0, :x => 0, :status => 'hit', :is_server_block => true}, 
-#                              :d => {:y => 0, :x => 1, :status => 'hit', :is_server_block => true},
-#                              :e => {:y => 5, :x => 5, :status => 'hit', :is_server_block => false},
-#                              :f => {:y => 5, :x => 5, :status => 'hit', :is_server_block => true}
-#                            }
-#               }
       
     response = ActiveSupport::JSON.decode(response.body) 
-  
+    
     # Update Status of game
     game.update_attributes(:status => response["game"]["game"]["status"])
  
     # Update all blocks to keep client in sync  
-    response["blocks"].each do |block|
-      block_for_update = Block.by_game_id(game.id).where(:x => block["block"]["y"], :y => block["block"]["x"], :is_server_block => block["block"]["is_server_block"]).first
-      block_for_update.update_attributes(:status => block["block"]["status"])
+    response["cells"].each do |cell|
+      block_for_update = Block.by_game_id(game.id).where(:x => cell["cell"]["y"], :y => cell["cell"]["x"], :is_server_block => false).first
+      block_for_update.update_attributes(:status => cell["cell"]["status"])
     end
               
     # p response
@@ -94,7 +58,7 @@ module Player
   def make_move(game, x_value, y_value)         
     # Create move on battle service      
     
-    uri = URI.parse('http://10.32.1.241:9000/nukes')
+    uri = URI.parse('http://0.0.0.0:9000/nukes')
 
     response = Net::HTTP.post_form(uri, 
                                    {

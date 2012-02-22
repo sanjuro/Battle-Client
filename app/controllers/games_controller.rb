@@ -43,7 +43,7 @@ class GamesController < ApplicationController
    result = ShowGameContext.call(current_user.id, @game.id)
 
     @sunk_ships = result["sunk"]
-    
+    p result
     @player_blocks = @game.get_player_blocks
     @server_blocks = @game.get_server_blocks
   

@@ -29,7 +29,8 @@ describe GamesController do
     
     before(:each) do 
       @game = Game.create!(@attr)
-      CreateGameContext.stub!(:call).and_return(@game)
+      @response = { :game => { :id => 1000}}
+      CreateGameContext.stub!(:call).and_return(@response)
     end
     
     context 'Given a Player wants to create a new game' do
@@ -46,8 +47,9 @@ describe GamesController do
   describe "POST 'show'" do
     
     before(:each) do 
+      @response = { :game => { :id => 1000}}
       @game = Game.create!(@attr)
-      CreateGameContext.stub!(:call).and_return(@game)
+      CreateGameContext.stub!(:call).and_return(@response)
     end
     
     context 'Given a Player wants see a game' do

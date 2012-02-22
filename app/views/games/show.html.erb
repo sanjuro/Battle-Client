@@ -37,7 +37,7 @@ It is a 10 X 10 field, starting with 0 up to 9.
 <% if !@sunk_ships.empty? %>
 <ul>
 	<% @sunk_ships.each do |ship| %>	
-		<li><%= ship["server_ship"]["name"] %></li>
+		<li><%= ship["sunk"]["name"] %></li>
 	<% end %>
 </ul>
 <% end %>
