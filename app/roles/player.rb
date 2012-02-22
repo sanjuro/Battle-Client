@@ -42,8 +42,10 @@ module Player
       
     response = ActiveSupport::JSON.decode(response.body) 
     
-    # Update Status of game
+    # Update game attributes
     game.update_attributes(:status => response["game"]["game"]["status"])
+    game.update_attributes(:player_hits => response["game"]["game"]["player_hits"])
+    game.update_attributes(:server_hits => response["game"]["game"]["server_hits"])
  
     # Update all blocks to keep client in sync  
     response["cells"].each do |cell|
@@ -66,13 +68,15 @@ module Player
                                      'x_value' => x_value.to_s(),
                                      'y_value' => y_value.to_s()
                                    })
-    p response
+   
     # Simulated Response from Battle Service
     # response = { :id => game.server_game_id, :player_status => 'hit', :y => 5, :x => 5, :server_status => 'miss', :game_status => 'in_progress'}
     response = ActiveSupport::JSON.decode(response.body) 
-
-    # Update Game Status
-    game.update_attributes(:status => response["game_status"])
+   
+    # Update game attributes
+    game.update_attributes(:status => response["game"]["game"]["status"])
+    game.update_attributes(:player_hits => response["game"]["game"]["player_hits"])
+    game.update_attributes(:server_hits => response["game"]["game"]["server_hits"])
       
     if !response["error"].nil?
       return response
@@ -87,7 +91,7 @@ module Player
       server_block = Block.by_game_id(game.id).for_server.where(:y => x_value).where(:x => y_value).first
       server_block.update_attributes(:status => response["player_status"])
     end
-
+    
     return response
 
   end

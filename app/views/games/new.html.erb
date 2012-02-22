@@ -1,6 +1,12 @@
 <h1>
 	Game Id: <%= @game.server_game_id %>
-	<span class=""><%=  @game.status %></span>
+	<% if @game.status == 'won' %>
+	<span class="status won">won</span>
+	<% elsif @game.status == 'won' %>
+	<span class="status lost">lost</span>
+	<% else %>
+	<span class="status in_progress">in progress</span>
+	<% end%>
 </h1>
 <p>
 Your battelfield will be automatically generated.<br>

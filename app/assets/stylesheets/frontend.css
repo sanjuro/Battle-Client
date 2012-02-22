@@ -310,29 +310,36 @@ ul#games_list {
 .miss {
 	background-color: red;
 	}
-.comment{
-    clear: both;
-    margin-bottom: 40px;
-    margin-top: 10px;
-    max-width: 700px;	
-    padding-bottom: 10px;
-}	
-
-.comment_metadata {
-    color: #767E84;
-    float: left;
-    font-size: 0.9em;
-    width: 130px;              
-}
-
-.comment_author{
-	font-weight: bold;
-}
-
-.comment_body{
-	margin-left: 150px;
-}
-
+.won, .lost, .in_progress {
+	border-radius: 4px 4px 4px 4px;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+	color:#FFF;
+	padding:0.2em;
+	margin-bottom:1em;
+	}
+.won {
+	background-color: #57A957;
+    background-image: -moz-linear-gradient(center top , #62C462, #57A957);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	}
+.lost {
+	background-color: #C43C35;
+    background-image: -moz-linear-gradient(center top , #EE5F5B, #C43C35);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	}
+.in_progress {
+	background-color: #339BB9;
+    background-image: -moz-linear-gradient(center top , #5BC0DE, #339BB9);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	}
 #player_board, #server_board {
 	width: 48%;
 	}
@@ -360,7 +367,8 @@ ul#games_list {
 }
 
 /* All Purpose */
-.error, .alert, .notice, .success, .info, #error_explanation, .print_pdf_button  {border-radius: 4px 4px 4px 4px;border-style: solid;border-width: 1px;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;color:#FFF;padding:0.8em;margin-bottom:1em;}
+.error, .alert, .notice, .success, .info, #error_explanation, .print_pdf_button
+{border-radius: 4px 4px 4px 4px;border-style: solid;border-width: 1px;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;color:#FFF;padding:0.8em;margin-bottom:1em;}
 .error, .alert, #error_explanation {background-color: #C43C35;
     background-image: -moz-linear-gradient(center top , #EE5F5B, #C43C35);
     background-repeat: repeat-x;
