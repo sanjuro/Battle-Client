@@ -1,4 +1,5 @@
-A little Balltleships Client to play battleships with the Battle Service.
+A little Balltleships Client created using Rails 3.2.1 to play battleships with the Battle Service, this 
+is availible in another repo.
 
 Instructions:
 
