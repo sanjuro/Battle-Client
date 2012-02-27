@@ -41,15 +41,15 @@ module Player
       }
       
     response = ActiveSupport::JSON.decode(response.body) 
-    
+
     # Update game attributes
     game.update_attributes(:status => response["game"]["game"]["status"])
     game.update_attributes(:player_hits => response["game"]["game"]["player_hits"])
     game.update_attributes(:server_hits => response["game"]["game"]["server_hits"])
- 
+    
     # Update all blocks to keep client in sync  
     response["cells"].each do |cell|
-      block_for_update = Block.by_game_id(game.id).where(:x => cell["cell"]["y"], :y => cell["cell"]["x"], :is_server_block => false).first
+      block_for_update = Block.by_game_id(game.id).where(:x => cell["cell"]["x"], :y => cell["cell"]["y"], :is_server_block => false).first
       block_for_update.update_attributes(:status => cell["cell"]["status"])
     end
               
@@ -72,25 +72,19 @@ module Player
     # Simulated Response from Battle Service
     # response = { :id => game.server_game_id, :player_status => 'hit', :y => 5, :x => 5, :server_status => 'miss', :game_status => 'in_progress'}
     response = ActiveSupport::JSON.decode(response.body) 
-   
+
     # Update game attributes
     game.update_attributes(:status => response["game"]["game"]["status"])
     game.update_attributes(:player_hits => response["game"]["game"]["player_hits"])
     game.update_attributes(:server_hits => response["game"]["game"]["server_hits"])
       
-    if !response["error"].nil?
-      return response
-    end
-    
-    if response["prize"].nil?
-      # Update player's blocks
-      player_block = Block.by_game_id(game.id).for_player.where(:y => response["y"]).where(:x => response["x"]).first
-      player_block.update_attributes(:status => response["server_status"])
-        
-      # Update player's blocks
-      server_block = Block.by_game_id(game.id).for_server.where(:y => x_value).where(:x => y_value).first
-      server_block.update_attributes(:status => response["player_status"])
-    end
+    # Update player's blocks
+    player_block = Block.by_game_id(game.id).for_player.where(:y => response["y"]).where(:x => response["x"]).first
+    player_block.update_attributes(:status => response["server_status"])
+      
+    # Update player's blocks
+    server_block = Block.by_game_id(game.id).for_server.where(:y => x_value).where(:x => y_value).first
+    server_block.update_attributes(:status => response["player_status"])
     
     return response
 
