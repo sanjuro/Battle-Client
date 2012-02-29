@@ -19,6 +19,7 @@ module Player
 
     # Allocate ships as dictated by the web service
     response["cells"].each do |game_block|
+      p game_block
       block = Block.by_game_id(game.id).where(:y => game_block["cell"]["y"]).where(:x => game_block["cell"]["x"]).first 
       block.update_attributes(
           :status => game_block["cell"]["status"], 
